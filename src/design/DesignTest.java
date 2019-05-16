@@ -1,7 +1,11 @@
 package design;
 
+import design.abstractFactory.Provider;
+import design.abstractFactory.SendMailFactory;
+import design.abstractFactory.SendSmsFactory;
 import design.factoryMethod.SendFactory;
 import design.factoryMethod.SendFactory2;
+import design.factoryMethod.SendFactory3;
 import design.factoryMethod.Sender;
 import org.junit.Test;
 
@@ -34,6 +38,9 @@ import org.junit.Test;
 
 public class DesignTest {
 
+    /**
+     * 工厂方法
+     */
     @Test
     public void factoryMethod() {
         SendFactory factory = new SendFactory();
@@ -41,11 +48,32 @@ public class DesignTest {
         sender.Send();
     }
 
+    /**
+     * 多个工厂方法
+     */
     @Test
     public void factoryMethod2() {
         SendFactory2 factory = new SendFactory2();
         Sender sender = factory.produceMail();
         sender.Send();
+    }
+
+    /**
+     * 静态工厂方法
+     */
+    @Test
+    public void factoryMethod3() {
+        Sender sender = SendFactory3.produceMail();
+        sender.Send();
+    }
+
+    /**
+     * 抽象工厂方法
+     */
+    @Test
+    public void abstractFactoryMethod() {
+        Provider provider = new SendSmsFactory();
+        provider.produce().Send();
     }
 
 }
